@@ -171,3 +171,54 @@
 .roundScreenBackBtn:active { border: none; }
 
 /* Rounds Screen */
+
+/* Player Vs Plaver */
+
+.playerSelectTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.playerSelectRow {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.playerSelectDiv {
+    width: 30%;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    background-color: black;
+    border: white solid 0.1rem;
+    border-radius: 5px;
+}
+
+.playerChoiceTitles {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.playerOptions {
+    color: white;
+    font-size: 1.5rem;
+    width: 100%;
+    border: white solid 0.1rem;
+    border-radius: 0;
+}
+
+.playerOptions:hover {
+    color: black;
+    background-color: white;
+}
+
+.playerOptionsDeactive {
+    color: white;
+    font-size: 1.5rem;
+    background-color: white;
+    margin-bottom: 0;
+    padding-bottom: 0.95rem;
+}
+
+/* Player Vs Plaver */
