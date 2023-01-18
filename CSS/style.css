@@ -1,0 +1,173 @@
+@font-face {
+    font-family: "Orbitron Regular";
+    src: url("../Assets/Fonts/Orbitron-Regular.ttf");
+}
+
+#bodyTag {
+    background-image: url("../Assets/Pictures/Pixel\ Space\ Background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+
+    font-family: Orbitron Regular;
+    color: white;
+}
+
+/* Title Screen */
+
+.startTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.startButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 25%;
+}
+
+.startButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.startButton:hover { font-size: 2.5rem; }
+.startButton:active { border: none; }
+
+/* Title Screen */
+
+/* Start Screen */
+
+.playButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 20%;
+}
+
+.playButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.playButton:hover { font-size: 2.5rem; }
+.playButton:active { border: none; }
+
+.rulesButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.rulesButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.rulesButton:hover { font-size: 2.5rem; }
+.rulesButton:active { border: none; }
+
+.backToTitleButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.backToTitleButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.backToTitleButton:hover { font-size: 2.5rem; }
+.backToTitleButton:active { border: none; }
+
+/* Start Screen */
+
+/* Play Select Screen */
+
+.twoPlayerButtonDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.twoPlayerButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.twoPlayerButton:hover { font-size: 2.5rem; }
+.twoPlayerButton:active { border: none; }
+
+.playerCPUButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.playerCPUButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.playerCPUButton:hover { font-size: 2.5rem; }
+.playerCPUButton:active { border: none; }
+
+.twoCPUButtonDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.twoCPUButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.twoCPUButton:hover { font-size: 2.5rem; }
+.twoCPUButton:active { border: none; }
+
+.backToTitlePlaySelectButtonDiv {
+    margin-top: 5%;
+}
+
+/* Play Select Screen */
+
+/* Rounds Screen */
+
+.roundScreenTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.roundScreenBtnRow {
+    margin-top: 10%;
+}
+
+.roundScreenBtnCols {
+    display: flex;
+    justify-content: center;
+}
+
+.roundScreenBtns {
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+}
+
+.roundScreenBtns:hover { font-size: 2.5rem; }
+.roundScreenBtns:active { border: none; }
+
+.roundScreenBackBtnDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.roundScreenBackBtn {
+    color: white;
+    font-size: 2rem;
+}
+
+.roundScreenBackBtn:hover { font-size: 2.5rem; }
+.roundScreenBackBtn:active { border: none; }
+
+/* Rounds Screen */
