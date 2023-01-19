@@ -22,7 +22,7 @@ let roundPlayerChoices = "";
 let winTitle = "";
 let winDetails = "";
 
-// TitleScreen();
+TitleScreen();
 
 function GetCPU1() {
     fetch("https://scottsrpsls.azurewebsites.net/api/RockPaperScissors/GetRandomOption").then(
