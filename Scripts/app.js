@@ -8,8 +8,6 @@ let currentRound = 0;
 let winBreak = 0;
 let player1Choice = "";
 let player2Choice = "";
-let cpuPlaceHolder1 = "";
-let cpuPlaceHolder2 = "";
 let cpu1Choice = "";
 let cpu2Choice = "";
 let player1Wins = 0;
@@ -29,7 +27,7 @@ function GetCPU1() {
         response => response.text()
     ).then(
         data => {
-            cpuPlaceHolder1 = data;
+            cpu1Choice = data;
         }
     )
 }
@@ -39,7 +37,7 @@ function GetCPU2() {
         response => response.text()
     ).then(
         data => {
-            cpuPlaceHolder2 = data;
+            cpu2Choice = data;
         }
     )
 }
@@ -199,9 +197,7 @@ function PlaySelectScreen() {
     twoCPUButton.addEventListener("click", function () {
         playChoice = "CPUvCPU";
         GetCPU1();
-        cpu1Choice = cpuPlaceHolder1;
         GetCPU2();
-        cpu2Choice = cpuPlaceHolder2;
         RoundSelectScreen();
     });
 
@@ -541,7 +537,6 @@ function PVPPlayer2Select() {
 }
 
 function PVCPUPlayerSelect() {
-    cpu1Choice = cpuPlaceHolder1;
     bodyTag.innerHTML = "";
 
     let playerSelectTitle = document.createElement("h1");
@@ -978,9 +973,7 @@ function RoundWinScreen() {
                 GetCPU1();
             } else if (playChoice === "CPUvCPU") {
                 GetCPU1();
-                cpu1Choice = cpuPlaceHolder1;
                 GetCPU2();
-                cpu2Choice = cpuPlaceHolder2;
                 RoundWinScreen();
             }
 
