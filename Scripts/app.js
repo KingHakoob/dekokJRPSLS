@@ -2,12 +2,18 @@ let bodyTag = document.getElementById("bodyTag");
 
 let playChoice = "";
 let maxRound = 0;
+let currentRound = 0;
 let player1Choice = "";
 let player2Choice = "";
 let cpu1Choice = "";
 let cpu2Choice = "";
 let player1Wins = 0;
 let player2Wins = 0;
+
+let roundWinScreenTitle = "";
+let roundPlayerChoices = "";
+let winTitle = "";
+let winDetails = "";
 
 TitleScreen();
 
@@ -171,6 +177,7 @@ function RoundSelectScreen(){
     bestOf1Btn.textContent = "Best Of 1 Round";
     bestOf1Btn.addEventListener("click", function(){
         maxRound = 1;
+        currentRound = 0;
         Player1Select();
     });
 
@@ -185,6 +192,7 @@ function RoundSelectScreen(){
     bestOf5Btn.textContent = "Best Of 5 Rounds";
     bestOf5Btn.addEventListener("click", function(){
         maxRound = 5;
+        currentRound = 0;
         Player1Select();
     });
 
@@ -199,6 +207,7 @@ function RoundSelectScreen(){
     bestOf7Btn.textContent = "Best Of 7 Rounds";
     bestOf7Btn.addEventListener("click", function(){
         maxRound = 7;
+        currentRound = 0;
         Player1Select();
     });
 
@@ -400,6 +409,7 @@ function Player2Select() {
     player2RockBtn.textContent = "Rock";
     player2RockBtn.addEventListener("click", function(){
         player2Choice = "Rock";
+        RoundWinScreen();
     });
 
     let player2PaperBtn = document.createElement("button");
@@ -408,6 +418,7 @@ function Player2Select() {
     player2PaperBtn.textContent = "Paper";
     player2PaperBtn.addEventListener("click", function(){
         player2Choice = "Paper";
+        RoundWinScreen();
     });
 
     let player2ScissorsBtn = document.createElement("button");
@@ -416,6 +427,7 @@ function Player2Select() {
     player2ScissorsBtn.textContent = "Scissors";
     player2ScissorsBtn.addEventListener("click", function(){
         player2Choice = "Scissors";
+        RoundWinScreen();
     });
 
     let player2LizardBtn = document.createElement("button");
@@ -424,6 +436,7 @@ function Player2Select() {
     player2LizardBtn.textContent = "Lizard";
     player2LizardBtn.addEventListener("click", function(){
         player2Choice = "Lizard";
+        RoundWinScreen();
     });
 
     let player2SpockBtn = document.createElement("button");
@@ -432,6 +445,7 @@ function Player2Select() {
     player2SpockBtn.textContent = "Spock";
     player2SpockBtn.addEventListener("click", function(){
         player2Choice = "Spock";
+        RoundWinScreen();
     });
 
     let player2SelectDiv = document.createElement("div");
@@ -451,4 +465,202 @@ function Player2Select() {
     player2SelectRow.appendChild(playerSelectSpaceDiv);
     player2SelectRow.appendChild(player2SelectDiv);
     bodyTag.appendChild(player2SelectRow);
+}
+
+function RoundWinScreen() {
+    if(player1Choice === "Rock"){
+        if(player2Choice === "Rock"){
+            roundWinScreenTitle = "It's A Tie!";
+            roundPlayerChoices = "Rock Ties With Rock";
+        }else if(player2Choice === "Paper"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Paper Covers Rock";
+            player2Wins++;
+        }else if(player2Choice === "Scissors"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Rock Crushes Scissors";
+            player1Wins++;
+        }else if(player2Choice === "Lizard"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Rock Crushes Lizard";
+            player1Wins++;
+        }else if(player2Choice === "Spock"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Spock Vaporizes Rock";
+            player2Wins++;
+        }
+    }else if (player1Choice === "Paper"){
+        if(player2Choice === "Rock"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Paper Covers Rock";
+            player1Wins++;
+        }else if(player2Choice === "Paper"){
+            roundWinScreenTitle = "It's A Tie!";
+            roundPlayerChoices = "Paper Ties With Paper";
+        }else if(player2Choice === "Scissors"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Scissors Cuts Paper";
+            player2Wins++;
+        }else if(player2Choice === "Lizard"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Lizard Eats Paper";
+            player2Wins++;
+        }else if(player2Choice === "Spock"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Paper Disproves Spock";
+            player1Wins++;
+        }
+    }else if (player1Choice === "Scissors"){
+        if(player2Choice === "Rock"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Rock Crushes Scissors";
+            player2Wins++;
+        }else if(player2Choice === "Paper"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Scissors Cuts Paper";
+            player1Wins++;
+        }else if(player2Choice === "Scissors"){
+            roundWinScreenTitle = "It's A Tie!";
+            roundPlayerChoices = "Scissors Ties With Scissors";
+        }else if(player2Choice === "Lizard"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Scissors Decapitates Lizard";
+            player1Wins++;
+        }else if(player2Choice === "Spock"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Spock Smashes Scissors";
+            player2Wins++;
+        }
+    }else if (player1Choice === "Lizard"){
+        if(player2Choice === "Rock"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Rock Crushes Lizard";
+            player2Wins++;
+        }else if(player2Choice === "Paper"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Lizard Eats Paper";
+            player1Wins++;
+        }else if(player2Choice === "Scissors"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Scissors Decapitates Lizard";
+            player2Wins++;
+        }else if(player2Choice === "Lizard"){
+            roundWinScreenTitle = "It's A Tie!";
+            roundPlayerChoices = "Lizard Ties With Lizard";
+        }else if(player2Choice === "Spock"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Lizard Poisons Spock";
+            player1Wins++;
+        }
+    }else if (player1Choice === "Spock"){
+        if(player2Choice === "Rock"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Spock Vaporizes Rock";
+            player1Wins++;
+        }else if(player2Choice === "Paper"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Paper Disproves Spock";
+            player2Wins++;
+        }else if(player2Choice === "Scissors"){
+            roundWinScreenTitle = "Player 1 Takes This Round!";
+            roundPlayerChoices = "Spock Smashes Scissors";
+            player1Wins++;
+        }else if(player2Choice === "Lizard"){
+            roundWinScreenTitle = "Player 2 Takes This Round!";
+            roundPlayerChoices = "Lizard Poisons Spock";
+            player2Wins++;
+        }else if(player2Choice === "Spock"){
+            roundWinScreenTitle = "It's A Tie!";
+            roundPlayerChoices = "Spock Ties With Spock";
+        }
+    }
+
+    bodyTag.innerHTML = "";
+
+    let roundWinTitle = document.createElement("h1");
+    roundWinTitle.className = "roundWinTitle";
+    roundWinTitle.textContent = roundWinScreenTitle;
+
+    bodyTag.appendChild(roundWinTitle);
+
+    let roundWinDetails = document.createElement("h1");
+    roundWinDetails.className = "roundWinDetails";
+    roundWinDetails.textContent = roundPlayerChoices;
+
+    bodyTag.appendChild(roundWinDetails);
+
+    let roundScore = document.createElement("h1");
+    roundScore.className = "roundScore";
+    roundScore.textContent = player1Wins + " : " + player2Wins;
+
+    bodyTag.appendChild(roundScore);
+
+    let nextRoundButton = document.createElement("button");
+    nextRoundButton.type = "button";
+    nextRoundButton.className = "nextRoundBtn btn pulse";
+    nextRoundButton.textContent = "Next Round";
+    nextRoundButton.addEventListener("click", function(){
+        currentRound++;
+        if(currentRound < maxRound){
+            Player1Select();
+        }else{
+            WinScreen();
+        }
+    });
+
+    let nextRoundButtonDiv = document.createElement("div");
+    nextRoundButtonDiv.className = "nextRoundDiv";
+
+    nextRoundButtonDiv.appendChild(nextRoundButton);
+    bodyTag.appendChild(nextRoundButtonDiv);
+
+}
+
+function WinScreen(){
+    bodyTag.innerHTML = "";
+
+    if(player1Wins > player2Wins) { 
+        winTitle = "Player 1 Wins!"; 
+        winDetails = "As He Should";
+    } else if(player1Wins < player2Wins) { 
+        winTitle = "Player 2 Wins!"; 
+        winDetails = "Next Time, They Get To Be Player 1"
+    } else { 
+        winTitle = "It Was A Tie!"; 
+        winDetails = "You Both Are Either Really Good Or Really Bad";
+    }
+
+
+
+    let winScreenTitle = document.createElement("h1");
+    winScreenTitle.className = "winScreenTitle";
+    winScreenTitle.textContent = winTitle;
+
+    bodyTag.appendChild(winScreenTitle);
+
+    let winScreenDetails = document.createElement("h1");
+    winScreenDetails.className = "winScreenDetails";
+    winScreenDetails.textContent = winDetails;
+
+    bodyTag.appendChild(winScreenDetails);
+
+    let finalScore = document.createElement("h1");
+    finalScore.className = "finalScore";
+    finalScore.textContent = player1Wins + " : " + player2Wins;
+
+    bodyTag.appendChild(finalScore);
+
+    let winBackToStartBtn = document.createElement("button");
+    winBackToStartBtn.type = "button";
+    winBackToStartBtn.className = "winBackToStartBtn btn pulse";
+    winBackToStartBtn.textContent = "Back To Start";
+    winBackToStartBtn.addEventListener("click", function(){
+        StartScreen();
+    });
+
+    let winBackToStartBtnDiv = document.createElement("div");
+    winBackToStartBtnDiv.className = "winBackToStartBtnDiv";
+
+    winBackToStartBtnDiv.appendChild(winBackToStartBtn);
+    bodyTag.appendChild(winBackToStartBtnDiv);
 }

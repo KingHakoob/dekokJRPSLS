@@ -222,3 +222,73 @@
 }
 
 /* Player Vs Plaver */
+
+/* Round Win Screen */
+
+.roundWinTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.roundWinDetails {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.roundScore {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 3%;
+}
+
+.nextRoundDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.nextRoundBtn {
+    color: white;
+    font-size: 2rem;
+}
+
+.nextRoundBtn:hover { font-size: 2.5rem; }
+.nextRoundBtn:active { border: none; }
+
+/* Round Win Screen */
+
+/* Win Screen */
+
+.winScreenTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.winScreenDetails {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.finalScore {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 3%;
+}
+
+.winBackToStartBtnDiv {
+    display: flex;
+    justify-content: center;
+    margin-top: 15%;
+}
+
+.winBackToStartBtn {
+    color: white;
+    font-size: 2rem;
+}
+
+.winBackToStartBtn:hover { font-size: 2.5rem; }
+.winBackToStartBtn:active { border: none; }
+
+/* Win Screen */
