@@ -14,6 +14,23 @@
     color: white;
 }
 
+.modal-content {
+    color: white;
+    background-color: black;
+    border: white solid 0.1rem;
+}
+
+.modalUnderstoodBtn {
+    color: white;
+    border: white solid 0.1rem;
+}
+
+.modalUnderstoodBtn:hover {
+    color: black;
+    background-color: white;
+    border: white solid 0.1rem;
+}
+
 /* Title Screen */
 
 .startTitle {
@@ -81,6 +98,37 @@
 .backToTitleButton:active { border: none; }
 
 /* Start Screen */
+
+/* Rule Screen */
+
+.ruleScreenTitle {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.ruleScreenTxt {
+    margin-top: 2%;
+    text-align: center;
+    font-size: 1.5rem;
+    white-space: pre-line;
+}
+
+.ruleBackToStartButtonDiv {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.ruleBackToStartButton {
+    color: white;
+    font-size: 2rem;
+}
+
+.ruleBackToStartButton:hover { font-size: 2.5rem; }
+.ruleBackToStartButton:active { border: none; }
+
+/* Rule Screen */
 
 /* Play Select Screen */
 
