@@ -152,6 +152,10 @@ function PlaySelectScreen(){
     twoCPUButton.textContent = "CPU VS CPU";
     twoCPUButton.addEventListener("click", function(){
     playChoice = "CPUvCPU";
+        GetCPU();
+        cpu1Choice = cpuPlaceHolder;
+        GetCPU();
+        cpu2Choice = cpuPlaceHolder
         RoundSelectScreen();
     });
 
@@ -499,7 +503,7 @@ function PVCPUPlayerSelect(){
 
     let playerSelectTitle = document.createElement("h1");
     playerSelectTitle.className = "playerSelectTitlePVCPU";
-    playerSelectTitle.textContent = "Player 1 Choose, Player 2 Don't Cheat";
+    playerSelectTitle.textContent = "Human Choose Now";
 
     bodyTag.appendChild(playerSelectTitle);
 
@@ -925,8 +929,12 @@ function RoundWinScreen(){
         currentRound++;
         if(currentRound < maxRound){
             if(playChoice === "PvP") { PVPPlayer1Select(); }
-            else if(playChoice === "PvCPU") { PVCPUPlayerSelect(); }
-            else if(playChoice === "CPUvCPU") { CPUVCPUPlalyerSelect(); }
+            else if(playChoice === "PvCPU") { 
+                PVCPUPlayerSelect(); 
+                GetCPU();
+            } else if(playChoice === "CPUvCPU") {
+            
+            }
             
         }else{
             WinScreen();
