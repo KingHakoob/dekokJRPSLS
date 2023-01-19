@@ -174,19 +174,19 @@
 
 /* Player Vs Plaver */
 
-.playerSelectTitle {
+.playerSelectTitlePVP {
     text-align: center;
     font-size: 3rem;
     margin-top: 5%;
 }
 
-.playerSelectRow {
+.playerSelectRowPVP {
     margin-top: 5%;
     display: flex;
     justify-content: center;
 }
 
-.playerSelectDiv {
+.playerSelectDivPVP {
     width: 30%;
     padding-left: 0rem;
     padding-right: 0rem;
@@ -195,12 +195,12 @@
     border-radius: 5px;
 }
 
-.playerChoiceTitles {
+.playerChoiceTitlesPVP {
     text-align: center;
     font-size: 2rem;
 }
 
-.playerOptions {
+.playerOptionsPVP {
     color: white;
     font-size: 1.5rem;
     width: 100%;
@@ -208,12 +208,12 @@
     border-radius: 0;
 }
 
-.playerOptions:hover {
+.playerOptionsPVP:hover {
     color: black;
     background-color: white;
 }
 
-.playerOptionsDeactive {
+.playerOptionsDeactivePVP {
     color: white;
     font-size: 1.5rem;
     background-color: white;
@@ -222,6 +222,49 @@
 }
 
 /* Player Vs Plaver */
+
+/* Player Vs CPU */
+
+.playerSelectTitlePVCPU {
+    text-align: center;
+    font-size: 3rem;
+    margin-top: 5%;
+}
+
+.playerSelectRowPVCPU {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.playerSelectDivPVCPU {
+    width: 30%;
+    padding-left: 0rem;
+    padding-right: 0rem;
+    background-color: black;
+    border: white solid 0.1rem;
+    border-radius: 5px;
+}
+
+.playerChoiceTitlePVCPU {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.playerOptionsPVCPU {
+    color: white;
+    font-size: 1.5rem;
+    width: 100%;
+    border: white solid 0.1rem;
+    border-radius: 0;
+}
+
+.playerOptionsPVCPU:hover {
+    color: black;
+    background-color: white;
+}
+
+/* Player Vs CPU */
 
 /* Round Win Screen */
 

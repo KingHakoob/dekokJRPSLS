@@ -5,10 +5,13 @@ let maxRound = 0;
 let currentRound = 0;
 let player1Choice = "";
 let player2Choice = "";
+let cpuPlaceHolder = "";
 let cpu1Choice = "";
 let cpu2Choice = "";
 let player1Wins = 0;
 let player2Wins = 0;
+let cpu1Wins = 0;
+let cpu2Wins = 0;
 
 let roundWinScreenTitle = "";
 let roundPlayerChoices = "";
@@ -16,6 +19,16 @@ let winTitle = "";
 let winDetails = "";
 
 TitleScreen();
+
+function GetCPU() {
+    fetch("https://scottsrpsls.azurewebsites.net/api/RockPaperScissors/GetRandomOption").then(
+        response => response.text()
+    ).then(
+        data => {
+            cpuPlaceHolder = data;
+        }
+    )
+}
 
 function TitleScreen(){
     bodyTag.innerHTML = "";
@@ -123,6 +136,7 @@ function PlaySelectScreen(){
     playeCPUButton.textContent = "Player VS CPU";
     playeCPUButton.addEventListener("click", function(){
     playChoice = "PvCPU";
+        GetCPU();
         RoundSelectScreen();
     });
 
@@ -178,7 +192,11 @@ function RoundSelectScreen(){
     bestOf1Btn.addEventListener("click", function(){
         maxRound = 1;
         currentRound = 0;
-        Player1Select();
+        if(playChoice === "PvP") { PVPPlayer1Select(); }
+        else if(playChoice === "PvCPU") { PVCPUPlayerSelect(); }
+        else if(playChoice === "CPUvCPU") {
+            // Do Something Here
+        }
     });
 
     let bestOf1Div = document.createElement("div");
@@ -193,7 +211,11 @@ function RoundSelectScreen(){
     bestOf5Btn.addEventListener("click", function(){
         maxRound = 5;
         currentRound = 0;
-        Player1Select();
+        if(playChoice === "PvP") { PVPPlayer1Select(); }
+        else if(playChoice === "PvCPU") { PVCPUPlayerSelect(); }
+        else if(playChoice === "CPUvCPU") {
+            // Do Something Here
+        }
     });
 
     let bestOf5Div = document.createElement("div");
@@ -208,7 +230,11 @@ function RoundSelectScreen(){
     bestOf7Btn.addEventListener("click", function(){
         maxRound = 7;
         currentRound = 0;
-        Player1Select();
+        if(playChoice === "PvP") { PVPPlayer1Select(); }
+        else if(playChoice === "PvCPU") { PVCPUPlayerSelect(); }
+        else if(playChoice === "CPUvCPU") {
+            // Do Something Here
+        }
     });
 
     let bestOf7Div = document.createElement("div");
@@ -239,66 +265,66 @@ function RoundSelectScreen(){
     bodyTag.appendChild(roundScreenBackBtnDiv);
 }
 
-function Player1Select(){
+function PVPPlayer1Select(){
     bodyTag.innerHTML = "";
 
     let playerSelectTitle = document.createElement("h1");
-    playerSelectTitle.className = "playerSelectTitle";
+    playerSelectTitle.className = "playerSelectTitlePVP";
     playerSelectTitle.textContent = "Player 1 Choose, Player 2 Don't Cheat";
 
     bodyTag.appendChild(playerSelectTitle);
 
     let player1ChoiceTitle = document.createElement("h3");
-    player1ChoiceTitle.className = "playerChoiceTitles";
+    player1ChoiceTitle.className = "playerChoiceTitlesPVP";
     player1ChoiceTitle.textContent = "Player 1:";
 
     let player1RockBtn = document.createElement("button");
     player1RockBtn.type = "button";
-    player1RockBtn.className = "playerOptions btn";
+    player1RockBtn.className = "playerOptionsPVP btn";
     player1RockBtn.textContent = "Rock";
     player1RockBtn.addEventListener("click", function(){
         player1Choice = "Rock";
-        Player2Select();
+        PVPPlayer2Select();
     });
 
     let player1PaperBtn = document.createElement("button");
     player1PaperBtn.type = "button";
-    player1PaperBtn.className = "playerOptions btn";
+    player1PaperBtn.className = "playerOptionsPVP btn";
     player1PaperBtn.textContent = "Paper";
     player1PaperBtn.addEventListener("click", function(){
         player1Choice = "Paper";
-        Player2Select();
+        PVPPlayer2Select();
     });
 
     let player1ScissorsBtn = document.createElement("button");
     player1ScissorsBtn.type = "button";
-    player1ScissorsBtn.className = "playerOptions btn";
+    player1ScissorsBtn.className = "playerOptionsPVP btn";
     player1ScissorsBtn.textContent = "Scissors";
     player1ScissorsBtn.addEventListener("click", function(){
         player1Choice = "Scissors";
-        Player2Select();
+        PVPPlayer2Select();
     });
 
     let player1LizardBtn = document.createElement("button");
     player1LizardBtn.type = "button";
-    player1LizardBtn.className = "playerOptions btn";
+    player1LizardBtn.className = "playerOptionsPVP btn";
     player1LizardBtn.textContent = "Lizard";
     player1LizardBtn.addEventListener("click", function(){
         player1Choice = "Lizard";
-        Player2Select();
+        PVPPlayer2Select();
     });
 
     let player1SpockBtn = document.createElement("button");
     player1SpockBtn.type = "button";
-    player1SpockBtn.className = "playerOptions btn";
+    player1SpockBtn.className = "playerOptionsPVP btn";
     player1SpockBtn.textContent = "Spock";
     player1SpockBtn.addEventListener("click", function(){
         player1Choice = "Spock";
-        Player2Select();
+        PVPPlayer2Select();
     });
 
     let player1SelectDiv = document.createElement("div");
-    player1SelectDiv.className = "playerSelectDiv col-4";
+    player1SelectDiv.className = "playerSelectDivPVP col-4";
 
     player1SelectDiv.appendChild(player1ChoiceTitle);
     player1SelectDiv.appendChild(player1RockBtn);
@@ -311,31 +337,31 @@ function Player1Select(){
     playerSelectSpaceDiv.className = "col-4";
 
     let player2ChoiceTitle = document.createElement("h3");
-    player2ChoiceTitle.className = "playerChoiceTitles";
+    player2ChoiceTitle.className = "playerChoiceTitlesPVP";
     player2ChoiceTitle.textContent = "Player 2:";
 
     let player2Rock = document.createElement("p");
-    player2Rock.className = "playerOptionsDeactive";
+    player2Rock.className = "playerOptionsDeactivePVP";
     player2Rock.textContent = "Rock";
 
     let player2Paper = document.createElement("p");
-    player2Paper.className = "playerOptionsDeactive";
+    player2Paper.className = "playerOptionsDeactivePVP";
     player2Paper.textContent = "Paper";
 
     let player2Scissors = document.createElement("p");
-    player2Scissors.className = "playerOptionsDeactive";
+    player2Scissors.className = "playerOptionsDeactivePVP";
     player2Scissors.textContent = "Scissors";
 
     let player2Lizard = document.createElement("p");
-    player2Lizard.className = "playerOptionsDeactive";
+    player2Lizard.className = "playerOptionsDeactivePVP";
     player2Lizard.textContent = "Lizard";
 
     let player2Spock = document.createElement("p");
-    player2Spock.className = "playerOptionsDeactive";
+    player2Spock.className = "playerOptionsDeactivePVP";
     player2Spock.textContent = "Spock";
 
     let player2SelectDiv = document.createElement("div");
-    player2SelectDiv.className = "playerSelectDiv col-4";
+    player2SelectDiv.className = "playerSelectDivPVP col-4";
 
     player2SelectDiv.appendChild(player2ChoiceTitle);
     player2SelectDiv.appendChild(player2Rock);
@@ -345,7 +371,7 @@ function Player1Select(){
     player2SelectDiv.appendChild(player2Spock);
 
     let player1SelectRow = document.createElement("div");
-    player1SelectRow.className = "playerSelectRow row";
+    player1SelectRow.className = "playerSelectRowPVP row";
 
     player1SelectRow.appendChild(player1SelectDiv);
     player1SelectRow.appendChild(playerSelectSpaceDiv);
@@ -353,41 +379,41 @@ function Player1Select(){
     bodyTag.appendChild(player1SelectRow);
 }
 
-function Player2Select() {
+function PVPPlayer2Select(){
     bodyTag.innerHTML = "";
 
     let playerSelectTitle = document.createElement("h1");
-    playerSelectTitle.className = "playerSelectTitle";
+    playerSelectTitle.className = "playerSelectTitlePVP";
     playerSelectTitle.textContent = "Player 2 Choose, Player 1 Don't Cheat";
 
     bodyTag.appendChild(playerSelectTitle);
 
     let player1ChoiceTitle = document.createElement("h3");
-    player1ChoiceTitle.className = "playerChoiceTitles";
+    player1ChoiceTitle.className = "playerChoiceTitlesPVP";
     player1ChoiceTitle.textContent = "Player 1:";
 
     let player1Rock = document.createElement("p");
-    player1Rock.className = "playerOptionsDeactive";
+    player1Rock.className = "playerOptionsDeactivePVP";
     player1Rock.textContent = "Rock";
 
     let player1Paper = document.createElement("p");
-    player1Paper.className = "playerOptionsDeactive";
+    player1Paper.className = "playerOptionsDeactivePVP";
     player1Paper.textContent = "Paper";
 
     let player1Scissors = document.createElement("p");
-    player1Scissors.className = "playerOptionsDeactive";
+    player1Scissors.className = "playerOptionsDeactivePVP";
     player1Scissors.textContent = "Scissors";
 
     let player1Lizard = document.createElement("p");
-    player1Lizard.className = "playerOptionsDeactive";
+    player1Lizard.className = "playerOptionsDeactivePVP";
     player1Lizard.textContent = "Lizard";
 
     let player1Spock = document.createElement("p");
-    player1Spock.className = "playerOptionsDeactive";
+    player1Spock.className = "playerOptionsDeactivePVP";
     player1Spock.textContent = "Spock";
 
     let player1SelectDiv = document.createElement("div");
-    player1SelectDiv.className = "playerSelectDiv col-4";
+    player1SelectDiv.className = "playerSelectDivPVP col-4";
 
     player1SelectDiv.appendChild(player1ChoiceTitle);
     player1SelectDiv.appendChild(player1Rock);
@@ -400,12 +426,12 @@ function Player2Select() {
     playerSelectSpaceDiv.className = "col-4";
 
     let player2ChoiceTitle = document.createElement("h3");
-    player2ChoiceTitle.className = "playerChoiceTitles";
+    player2ChoiceTitle.className = "playerChoiceTitlesPVP";
     player2ChoiceTitle.textContent = "Player 2:";
 
     let player2RockBtn = document.createElement("button");
     player2RockBtn.type = "button";
-    player2RockBtn.className = "playerOptions btn";
+    player2RockBtn.className = "playerOptionsPVP btn";
     player2RockBtn.textContent = "Rock";
     player2RockBtn.addEventListener("click", function(){
         player2Choice = "Rock";
@@ -414,7 +440,7 @@ function Player2Select() {
 
     let player2PaperBtn = document.createElement("button");
     player2PaperBtn.type = "button";
-    player2PaperBtn.className = "playerOptions btn";
+    player2PaperBtn.className = "playerOptionsPVP btn";
     player2PaperBtn.textContent = "Paper";
     player2PaperBtn.addEventListener("click", function(){
         player2Choice = "Paper";
@@ -423,7 +449,7 @@ function Player2Select() {
 
     let player2ScissorsBtn = document.createElement("button");
     player2ScissorsBtn.type = "button";
-    player2ScissorsBtn.className = "playerOptions btn";
+    player2ScissorsBtn.className = "playerOptionsPVP btn";
     player2ScissorsBtn.textContent = "Scissors";
     player2ScissorsBtn.addEventListener("click", function(){
         player2Choice = "Scissors";
@@ -432,7 +458,7 @@ function Player2Select() {
 
     let player2LizardBtn = document.createElement("button");
     player2LizardBtn.type = "button";
-    player2LizardBtn.className = "playerOptions btn";
+    player2LizardBtn.className = "playerOptionsPVP btn";
     player2LizardBtn.textContent = "Lizard";
     player2LizardBtn.addEventListener("click", function(){
         player2Choice = "Lizard";
@@ -441,7 +467,7 @@ function Player2Select() {
 
     let player2SpockBtn = document.createElement("button");
     player2SpockBtn.type = "button";
-    player2SpockBtn.className = "playerOptions btn";
+    player2SpockBtn.className = "playerOptionsPVP btn";
     player2SpockBtn.textContent = "Spock";
     player2SpockBtn.addEventListener("click", function(){
         player2Choice = "Spock";
@@ -449,7 +475,7 @@ function Player2Select() {
     });
 
     let player2SelectDiv = document.createElement("div");
-    player2SelectDiv.className = "playerSelectDiv col-4";
+    player2SelectDiv.className = "playerSelectDivPVP col-4";
 
     player2SelectDiv.appendChild(player2ChoiceTitle);
     player2SelectDiv.appendChild(player2RockBtn);
@@ -459,7 +485,7 @@ function Player2Select() {
     player2SelectDiv.appendChild(player2SpockBtn);
 
     let player2SelectRow = document.createElement("div");
-    player2SelectRow.className = "playerSelectRow row";
+    player2SelectRow.className = "playerSelectRowPVP row";
 
     player2SelectRow.appendChild(player1SelectDiv);
     player2SelectRow.appendChild(playerSelectSpaceDiv);
@@ -467,111 +493,405 @@ function Player2Select() {
     bodyTag.appendChild(player2SelectRow);
 }
 
-function RoundWinScreen() {
-    if(player1Choice === "Rock"){
-        if(player2Choice === "Rock"){
-            roundWinScreenTitle = "It's A Tie!";
-            roundPlayerChoices = "Rock Ties With Rock";
-        }else if(player2Choice === "Paper"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Paper Covers Rock";
-            player2Wins++;
-        }else if(player2Choice === "Scissors"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Rock Crushes Scissors";
-            player1Wins++;
-        }else if(player2Choice === "Lizard"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Rock Crushes Lizard";
-            player1Wins++;
-        }else if(player2Choice === "Spock"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Spock Vaporizes Rock";
-            player2Wins++;
+function PVCPUPlayerSelect(){
+    cpu1Choice = cpuPlaceHolder;
+    bodyTag.innerHTML = "";
+
+    let playerSelectTitle = document.createElement("h1");
+    playerSelectTitle.className = "playerSelectTitlePVCPU";
+    playerSelectTitle.textContent = "Player 1 Choose, Player 2 Don't Cheat";
+
+    bodyTag.appendChild(playerSelectTitle);
+
+    let playerChoiceTitle = document.createElement("h3");
+    playerChoiceTitle.className = "playerChoiceTitlePVCPU";
+    playerChoiceTitle.textContent = "Player 1:";
+
+    let player1RockBtn = document.createElement("button");
+    player1RockBtn.type = "button";
+    player1RockBtn.className = "playerOptionsPVCPU btn";
+    player1RockBtn.textContent = "Rock";
+    player1RockBtn.addEventListener("click", function(){
+        player1Choice = "Rock";
+        RoundWinScreen();
+    });
+
+    let player1PaperBtn = document.createElement("button");
+    player1PaperBtn.type = "button";
+    player1PaperBtn.className = "playerOptionsPVCPU btn";
+    player1PaperBtn.textContent = "Paper";
+    player1PaperBtn.addEventListener("click", function(){
+        player1Choice = "Paper";
+        RoundWinScreen();
+    });
+
+    let player1ScissorsBtn = document.createElement("button");
+    player1ScissorsBtn.type = "button";
+    player1ScissorsBtn.className = "playerOptionsPVCPU btn";
+    player1ScissorsBtn.textContent = "Scissors";
+    player1ScissorsBtn.addEventListener("click", function(){
+        player1Choice = "Scissors";
+        RoundWinScreen();
+    });
+
+    let player1LizardBtn = document.createElement("button");
+    player1LizardBtn.type = "button";
+    player1LizardBtn.className = "playerOptionsPVCPU btn";
+    player1LizardBtn.textContent = "Lizard";
+    player1LizardBtn.addEventListener("click", function(){
+        player1Choice = "Lizard";
+        RoundWinScreen();
+    });
+
+    let player1SpockBtn = document.createElement("button");
+    player1SpockBtn.type = "button";
+    player1SpockBtn.className = "playerOptionsPVCPU btn";
+    player1SpockBtn.textContent = "Spock";
+    player1SpockBtn.addEventListener("click", function(){
+        player1Choice = "Spock";
+        RoundWinScreen();
+    });
+
+    let player1SelectDiv = document.createElement("div");
+    player1SelectDiv.className = "playerSelectDivPVCPU col-4";
+
+    player1SelectDiv.appendChild(playerChoiceTitle);
+    player1SelectDiv.appendChild(player1RockBtn);
+    player1SelectDiv.appendChild(player1PaperBtn);
+    player1SelectDiv.appendChild(player1ScissorsBtn);
+    player1SelectDiv.appendChild(player1LizardBtn);
+    player1SelectDiv.appendChild(player1SpockBtn);
+
+    let player1SelectRow = document.createElement("div");
+    player1SelectRow.className = "playerSelectRowPVCPU row";
+
+    player1SelectRow.appendChild(player1SelectDiv);
+    bodyTag.appendChild(player1SelectRow);
+}
+
+function RoundWinScreen(){
+
+    // Probably Should've Used A Switch But I'm In Too Deep - Might Change Later
+    if(playChoice === "PvP"){
+        if(player1Choice === "Rock"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Rock Ties With Rock";
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                player2Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                player1Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                player1Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                player2Wins++;
+            }
+        }else if (player1Choice === "Paper"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                player1Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Paper Ties With Paper";
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                player2Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                player2Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Scissors"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                player2Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                player1Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Scissors Ties With Scissors";
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                player1Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                player2Wins++;
+            }
+        }else if (player1Choice === "Lizard"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                player2Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                player1Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                player2Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Lizard Ties With Lizard";
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Spock"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                player1Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                player2Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                player1Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                player2Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Spock Ties With Spock";
+            }
         }
-    }else if (player1Choice === "Paper"){
-        if(player2Choice === "Rock"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Paper Covers Rock";
-            player1Wins++;
-        }else if(player2Choice === "Paper"){
-            roundWinScreenTitle = "It's A Tie!";
-            roundPlayerChoices = "Paper Ties With Paper";
-        }else if(player2Choice === "Scissors"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Scissors Cuts Paper";
-            player2Wins++;
-        }else if(player2Choice === "Lizard"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Lizard Eats Paper";
-            player2Wins++;
-        }else if(player2Choice === "Spock"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Paper Disproves Spock";
-            player1Wins++;
+    }else if(playChoice === "PvCPU"){
+        if(player1Choice === "Rock"){
+            if(cpu1Choice === "Rock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Rock Ties With Rock";
+            }else if(cpu1Choice === "Paper"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Scissors"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                player1Wins++;
+            }else if(cpu1Choice === "Lizard"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                player1Wins++;
+            }else if(cpu1Choice === "Spock"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                cpu1Wins++;
+            }
+        }else if (player1Choice === "Paper"){
+            if(cpu1Choice === "Rock"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                player1Wins++;
+            }else if(cpu1Choice === "Paper"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Paper Ties With Paper";
+            }else if(cpu1Choice === "Scissors"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Lizard"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Spock"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Scissors"){
+            if(cpu1Choice === "Rock"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Paper"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                player1Wins++;
+            }else if(cpu1Choice === "Scissors"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Scissors Ties With Scissors";
+            }else if(cpu1Choice === "Lizard"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                player1Wins++;
+            }else if(cpu1Choice === "Spock"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                cpu1Wins++;
+            }
+        }else if (player1Choice === "Lizard"){
+            if(cpu1Choice === "Rock"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Paper"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                player1Wins++;
+            }else if(cpu1Choice === "Scissors"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Lizard"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Lizard Ties With Lizard";
+            }else if(cpu1Choice === "Spock"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Spock"){
+            if(cpu1Choice === "Rock"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                player1Wins++;
+            }else if(cpu1Choice === "Paper"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Scissors"){
+                roundWinScreenTitle = "The Human Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                player1Wins++;
+            }else if(cpu1Choice === "Lizard"){
+                roundWinScreenTitle = "The CPU Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                cpu1Wins++;
+            }else if(cpu1Choice === "Spock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Spock Ties With Spock";
+            }
         }
-    }else if (player1Choice === "Scissors"){
-        if(player2Choice === "Rock"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Rock Crushes Scissors";
-            player2Wins++;
-        }else if(player2Choice === "Paper"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Scissors Cuts Paper";
-            player1Wins++;
-        }else if(player2Choice === "Scissors"){
-            roundWinScreenTitle = "It's A Tie!";
-            roundPlayerChoices = "Scissors Ties With Scissors";
-        }else if(player2Choice === "Lizard"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Scissors Decapitates Lizard";
-            player1Wins++;
-        }else if(player2Choice === "Spock"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Spock Smashes Scissors";
-            player2Wins++;
-        }
-    }else if (player1Choice === "Lizard"){
-        if(player2Choice === "Rock"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Rock Crushes Lizard";
-            player2Wins++;
-        }else if(player2Choice === "Paper"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Lizard Eats Paper";
-            player1Wins++;
-        }else if(player2Choice === "Scissors"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Scissors Decapitates Lizard";
-            player2Wins++;
-        }else if(player2Choice === "Lizard"){
-            roundWinScreenTitle = "It's A Tie!";
-            roundPlayerChoices = "Lizard Ties With Lizard";
-        }else if(player2Choice === "Spock"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Lizard Poisons Spock";
-            player1Wins++;
-        }
-    }else if (player1Choice === "Spock"){
-        if(player2Choice === "Rock"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Spock Vaporizes Rock";
-            player1Wins++;
-        }else if(player2Choice === "Paper"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Paper Disproves Spock";
-            player2Wins++;
-        }else if(player2Choice === "Scissors"){
-            roundWinScreenTitle = "Player 1 Takes This Round!";
-            roundPlayerChoices = "Spock Smashes Scissors";
-            player1Wins++;
-        }else if(player2Choice === "Lizard"){
-            roundWinScreenTitle = "Player 2 Takes This Round!";
-            roundPlayerChoices = "Lizard Poisons Spock";
-            player2Wins++;
-        }else if(player2Choice === "Spock"){
-            roundWinScreenTitle = "It's A Tie!";
-            roundPlayerChoices = "Spock Ties With Spock";
+    }else if(playChoice === "CPUvCPU"){
+        if(player1Choice === "Rock"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Rock Ties With Rock";
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                player2Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                player1Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                player1Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                player2Wins++;
+            }
+        }else if (player1Choice === "Paper"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Paper Covers Rock";
+                player1Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Paper Ties With Paper";
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                player2Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                player2Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Scissors"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Scissors";
+                player2Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Scissors Cuts Paper";
+                player1Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Scissors Ties With Scissors";
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                player1Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                player2Wins++;
+            }
+        }else if (player1Choice === "Lizard"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Rock Crushes Lizard";
+                player2Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Lizard Eats Paper";
+                player1Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Scissors Decapitates Lizard";
+                player2Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Lizard Ties With Lizard";
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                player1Wins++;
+            }
+        }else if (player1Choice === "Spock"){
+            if(player2Choice === "Rock"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Spock Vaporizes Rock";
+                player1Wins++;
+            }else if(player2Choice === "Paper"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Paper Disproves Spock";
+                player2Wins++;
+            }else if(player2Choice === "Scissors"){
+                roundWinScreenTitle = "Player 1 Takes This Round!";
+                roundPlayerChoices = "Spock Smashes Scissors";
+                player1Wins++;
+            }else if(player2Choice === "Lizard"){
+                roundWinScreenTitle = "Player 2 Takes This Round!";
+                roundPlayerChoices = "Lizard Poisons Spock";
+                player2Wins++;
+            }else if(player2Choice === "Spock"){
+                roundWinScreenTitle = "It's A Tie!";
+                roundPlayerChoices = "Spock Ties With Spock";
+            }
         }
     }
 
@@ -591,7 +911,9 @@ function RoundWinScreen() {
 
     let roundScore = document.createElement("h1");
     roundScore.className = "roundScore";
-    roundScore.textContent = player1Wins + " : " + player2Wins;
+    if(playChoice === "PvP") { roundScore.textContent = player1Wins + " : " + player2Wins; }
+    else if(playChoice === "PvCPU") { roundScore.textContent = player1Wins + " : " + cpu1Wins; }
+    else if(playChoice === "CPUvCPU") { roundScore.textContent = cpu1Wins + " : " + cpu2Wins; }
 
     bodyTag.appendChild(roundScore);
 
@@ -602,7 +924,10 @@ function RoundWinScreen() {
     nextRoundButton.addEventListener("click", function(){
         currentRound++;
         if(currentRound < maxRound){
-            Player1Select();
+            if(playChoice === "PvP") { PVPPlayer1Select(); }
+            else if(playChoice === "PvCPU") { PVCPUPlayerSelect(); }
+            else if(playChoice === "CPUvCPU") { CPUVCPUPlalyerSelect(); }
+            
         }else{
             WinScreen();
         }
@@ -619,7 +944,8 @@ function RoundWinScreen() {
 function WinScreen(){
     bodyTag.innerHTML = "";
 
-    if(player1Wins > player2Wins) { 
+    if(playChoice === "PvP") {
+        if(player1Wins > player2Wins) { 
         winTitle = "Player 1 Wins!"; 
         winDetails = "As He Should";
     } else if(player1Wins < player2Wins) { 
@@ -629,8 +955,29 @@ function WinScreen(){
         winTitle = "It Was A Tie!"; 
         winDetails = "You Both Are Either Really Good Or Really Bad";
     }
-
-
+    } else if(playChoice === "PvCPU"){
+        if(player1Wins > cpu1Wins) { 
+            winTitle = "The Human Wins!"; 
+            winDetails = "They Out-Lucked The Robot";
+        } else if(player1Wins < cpu1Wins) { 
+            winTitle = "The CPU Wins!"; 
+            winDetails = "Next Time, Just Be Better"
+        } else { 
+            winTitle = "It Was A Tie!"; 
+            winDetails = "What's The Different Between Man And Machine?";
+        }
+    } else if (playChoice === "CPUvCPU"){
+        if(cpu1Wins > cpu2Wins) { 
+            winTitle = "CPU1 Wins!"; 
+            winDetails = "Clearly He Is Superior";
+        } else if(cpu1Wins < cpu2Wins) { 
+            winTitle = "CPU2 Wins!"; 
+            winDetails = "They Like To Be Called CPUA"
+        } else { 
+            winTitle = "It Was A Tie?"; 
+            winDetails = "How Did This Happen?";
+        }
+    }
 
     let winScreenTitle = document.createElement("h1");
     winScreenTitle.className = "winScreenTitle";
@@ -646,7 +993,10 @@ function WinScreen(){
 
     let finalScore = document.createElement("h1");
     finalScore.className = "finalScore";
-    finalScore.textContent = player1Wins + " : " + player2Wins;
+    if(playChoice === "PvP") { finalScore.textContent = player1Wins + " : " + player2Wins; }
+    else if(playChoice === "PvCPU") { finalScore.textContent = player1Wins + " : " + cpu1Wins; }
+    else if(playChoice === "CPUvCPU") { finalScore.textContent = cpu1Wins + " : " + cpu2Wins; }
+    
 
     bodyTag.appendChild(finalScore);
 
@@ -655,6 +1005,10 @@ function WinScreen(){
     winBackToStartBtn.className = "winBackToStartBtn btn pulse";
     winBackToStartBtn.textContent = "Back To Start";
     winBackToStartBtn.addEventListener("click", function(){
+        player1Wins = 0;
+        player2Wins = 0;
+        cpu1Wins = 0;
+        cpu2Wins = 0;
         StartScreen();
     });
 
