@@ -207,19 +207,19 @@ function PlaySelectScreen() {
     twoCPUButtonDiv.appendChild(twoCPUButton);
     bodyTag.appendChild(twoCPUButtonDiv);
 
-    let backToTitleButton = document.createElement("button");
-    backToTitleButton.type = "button";
-    backToTitleButton.className = "backToTitleButton btn";
-    backToTitleButton.textContent = "Back To Title";
-    backToTitleButton.addEventListener("click", function () {
-        TitleScreen();
+    let playModeBackToStartButton = document.createElement("button");
+    playModeBackToStartButton.type = "button";
+    playModeBackToStartButton.className = "backToTitleButton btn";
+    playModeBackToStartButton.textContent = "Back To Start";
+    playModeBackToStartButton.addEventListener("click", function () {
+        StartScreen();
     });
 
-    let backToTitleButtonDiv = document.createElement("div");
-    backToTitleButtonDiv.className = "backToTitleButtonDiv backToTitlePlaySelectButtonDiv";
+    let playModeBackToStartButtonDiv = document.createElement("div");
+    playModeBackToStartButtonDiv.className = "backToTitleButtonDiv backToTitlePlaySelectButtonDiv";
 
-    backToTitleButtonDiv.appendChild(backToTitleButton);
-    bodyTag.appendChild(backToTitleButtonDiv);
+    playModeBackToStartButtonDiv.appendChild(playModeBackToStartButton);
+    bodyTag.appendChild(playModeBackToStartButtonDiv);
 }
 
 function RoundSelectScreen() {
